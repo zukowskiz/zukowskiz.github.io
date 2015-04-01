@@ -18,9 +18,9 @@
         <h1>Zach Zukowski</h1>
         <h2>Zach Z&#39;s Page</h2>
 
-        <section id="downloads">
+        <!--<section id="downloads">
           <a href="https://github.com/zukowskiz" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
+        </section>-->
       </div>
     </header>
 
@@ -32,8 +32,103 @@
 <p>This is the start to my home page</p>
 
 <pre><code>
-foreach (var interest in MyInterest.Where(i => i._priority > 0)){
-Console.WriteLine("My interest {0}", i._name);
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AboutMe
+{
+    class Interest
+    {
+        public int _priority { get; set; }
+        public string _name { get; set; }
+        public DateTime _startDate { get; set; }
+        public DateTime _endDate { get;  set; }
+    }
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var myInterests = new List<Interest>();
+
+            myInterests.Add(new Interest()
+            {
+                _priority=1,
+                _name = "Disc Golf",
+                _startDate = DateTime.Parse("March 1, 2004"),
+                _endDate = DateTime.Now
+            });
+
+            myInterests.Add(new Interest()
+            {
+                _priority = 1,
+                _name = "Red Wine",
+                _startDate = DateTime.Parse("October 5, 2009"),
+                _endDate = DateTime.Now
+            });
+
+            myInterests.Add(new Interest()
+            {
+                _priority = 2,
+                _name = "Cooking",
+                _startDate = DateTime.Parse("June 1, 1995"),
+                _endDate = DateTime.Now
+            });
+
+            foreach (var interest in myInterests.Where(i=>i._priority>0).OrderBy(p=>p._priority))
+            {
+                int w, n, d;
+                RoundToMixedFraction((double) ((interest._endDate - interest._startDate).Days/365m), 4, out w, out n, out d);
+                Console.WriteLine("I enjoy {0} and have been doing it for {1} {2}/{3}",
+                    interest._name,w,n,d);
+            }
+            Console.Read();
+
+
+        }
+
+
+
+        static void RoundToMixedFraction(double input, int accuracy, out int whole, out int numerator, out int denominator)
+        {
+            double dblAccuracy = (double)accuracy;
+            whole = (int)(Math.Truncate(input));
+            var fraction = Math.Abs(input - whole);
+            if (fraction == 0)
+            {
+                numerator = 0;
+                denominator = 1;
+                return;
+            }
+            var n = Enumerable.Range(0, accuracy + 1).SkipWhile(e => (e / dblAccuracy) < fraction).First();
+            var hi = n / dblAccuracy;
+            var lo = (n - 1) / dblAccuracy;
+            if ((fraction - lo) < (hi - fraction)) n--;
+            if (n == accuracy)
+            {
+                whole++;
+                numerator = 0;
+                denominator = 1;
+                return;
+            }
+            var gcd = GCD(n, accuracy);
+            numerator = n / gcd;
+            denominator = accuracy / gcd;
+        }
+
+        static int GCD(int a, int b)
+        {
+            if (b == 0) return a;
+            else return GCD(b, a % b);
+        }
+
+
+
+    }
 }
 </code></pre>
 
@@ -43,14 +138,14 @@ Console.WriteLine("My interest {0}", i._name);
 <p>My Name is Zach Zukowski and I am a .NET developer mostly</p>
 
 <h3>
-<a id="interests" class="anchor" href="#interests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Interests</h3>
+<a id="interests" class="anchor" href="#interests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Languages</h3>
 
 <ul>
-<li>Red Wine</li>
-<li>Anime</li>
-<li>Programming</li>
-<li>Classic Cars</li>
-<li>Cooking</li>
+<li>C#</li>
+<li>T-SQL</li>
+<li>Powershell</li>
+<li>Java</li>
+<li>HTML</li>
 </ul>
 
 <h3>
