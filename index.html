@@ -53,7 +53,7 @@ namespace AboutMe
     {
         static void Main(string[] args)
         {
-            var myInterests = new List<Interest>();
+            var myInterests = new List</Interest>();
 
             myInterests.Add(new Interest()
             {
@@ -83,7 +83,7 @@ namespace AboutMe
             {
                 int w, n, d;
                 RoundToMixedFraction((double) ((interest._endDate - interest._startDate).Days/365m), 4, out w, out n, out d);
-                Console.WriteLine("I enjoy {0} and have been doing it for {1} {2}/{3}",
+                Console.WriteLine("I enjoy {0} and have been doing it for {1} {2}/{3} years.",
                     interest._name,w,n,d);
             }
             Console.Read();
