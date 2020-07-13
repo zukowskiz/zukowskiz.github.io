@@ -245,3 +245,10 @@ a {
 .cf {
   zoom:1;
 }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
