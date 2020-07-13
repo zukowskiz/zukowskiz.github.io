@@ -158,7 +158,6 @@ pre {
   border-radius: 2px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
-  text-wrap: normal;
   overflow: auto;
   overflow-y: hidden;
 }
@@ -214,7 +213,6 @@ hr {
   width: 16px;
   height: 16px;
   margin: 1px 8px 0 0;
-  float: left;
 }
 
 .btn-github .icon {
